@@ -1,3 +1,6 @@
+## Hanja System
+한자앱 관리시스템
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
