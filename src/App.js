@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Customer from './components/Customers'
+import Customer from './components/Customer'
 import './App.css';
 
 const customers = [
