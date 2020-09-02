@@ -11,8 +11,6 @@ import { withStyles } from '@material-ui/core/styles';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -35,7 +33,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.progress,20);
+    this.timer = setInterval(this.progress, 20);
     this.callApi()
     .then(res => this.setState({ customers: res }))
     .catch(err => console.log(err)); 
@@ -44,12 +42,13 @@ class App extends Component {
   callApi = async () => {
     const response = await fetch('/api/customers');
     const body = await response.json();
+    
     return body;
   }
 
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed+1 })
+    this.setState({ completed: completed >= 100 ? 0 : completed+1 });
   }
 
   render() {
@@ -72,13 +71,22 @@ class App extends Component {
 
             <TableBody>
               {this.state.customers ? this.state.customers.map(c => { 
-                return ( <Customer key = {c.id} id={c.id} image={c.image} name = {c.name} birthday={c.birthday} gender={c.gender} job = {c.job} /> );})
+                return ( <Customer 
+                            key = {c.id} id={c.id} image={c.image} name = {c.name} 
+                            birthday={c.birthday} gender={c.gender} job = {c.job} 
+                         /> );})
                 : <TableRow>
                     <TableCell colSpan="6" align="center">
-                      <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
+                      <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
                     </TableCell>
-                </TableRow> 
-                }
+                  </TableRow> 
+              }
+              {/* {customers.map(c => {
+                return ( <Customer 
+                  key = {c.id} id={c.id} image={c.image} name = {c.name} 
+                  birthday={c.birthday} gender={c.gender} job = {c.job} 
+                /> );
+                })} */}
             </TableBody>
           </Table>
         </Paper>
